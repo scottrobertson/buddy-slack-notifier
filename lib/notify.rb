@@ -41,11 +41,11 @@ class Notify
         fields: [
           {
             type: "mrkdwn",
-            text: "*Status*"
+            text: "*Step*"
           },
           {
             type: "mrkdwn",
-            text: "*Commit Hash*"
+            text: "*Commit*"
           },
           {
             type: "mrkdwn",
@@ -53,30 +53,19 @@ class Notify
           },
           {
             type: "mrkdwn",
-            text: "<#{ENV['BUDDY_EXECUTION_REVISION_URL']}|#{ENV['BUDDY_EXECUTION_REVISION_SHORT']}>"
+            text: "<#{ENV['BUDDY_EXECUTION_REVISION_URL']}|#{ENV['BUDDY_EXECUTION_REVISION_SHORT']}> (#{ENV['BUDDY_EXECUTION_REVISION_COMMITTER_NAME']})"
           },
         ]
       },
       {
+        type: "divider"
+      },
+      {
         type: "section",
-        fields: [
-          {
-            type: "mrkdwn",
-            text: "*Commiter*"
-          },
-          {
-            type: "mrkdwn",
-            text: "*Commit Message*"
-          },
-          {
-            type: "mrkdwn",
-            text: ENV['BUDDY_EXECUTION_REVISION_COMMITTER_NAME']
-          },
-          {
-            type: "mrkdwn",
-            text: ENV['BUDDY_EXECUTION_REVISION_MESSAGE']
-          },
-        ]
+        text: {
+          text: "```#{ENV['BUDDY_EXECUTION_REVISION_MESSAGE']}```",
+          type: "mrkdwn"
+        },
       },
       {
         type: "context",
@@ -92,6 +81,29 @@ class Notify
           {
             type: "mrkdwn",
             text: "*Time Taken:* #{ENV['BUDDY_EXECUTION_TIME']}s"
+          },
+        ]
+      },
+      {
+        type: "actions",
+        elements: [
+          {
+            type: "button",
+            text: {
+              type: "plain_text",
+              text: "View Build",
+              emoji: true
+            },
+            url: ENV['BUDDY_EXECUTION_URL']
+          },
+          {
+            type: "button",
+            text: {
+              type: "plain_text",
+              text: "View Commit",
+              emoji: true
+            },
+            url: ENV['BUDDY_EXECUTION_REVISION_URL']
           },
         ]
       }
