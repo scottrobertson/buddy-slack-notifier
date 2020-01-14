@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'slack-ruby-client'
 
 class Notify
@@ -15,6 +13,10 @@ class Notify
     blocks = [
       {
         type: "section",
+        text: {
+          text: "Running pipeline: *#{ENV['BUDDY_PIPELINE_NAME']}*",
+          type: "mrkdwn"
+        },
         fields: [
           {
             type: "mrkdwn",
@@ -85,8 +87,12 @@ class Notify
           },
           {
             type: "mrkdwn",
-            text: "*Time Taken:* #{ENV['BUDDY_EXECUTION_TIME']}"
-          }
+            text: "*Last Update:* #{Time.now.strftime('%H:%M:%S')}"
+          },
+          {
+            type: "mrkdwn",
+            text: "*Time Taken:* #{ENV['BUDDY_EXECUTION_TIME']}s"
+          },
         ]
       }
     ]
