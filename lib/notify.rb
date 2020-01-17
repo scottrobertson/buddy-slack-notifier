@@ -58,9 +58,6 @@ class Notify
         ]
       },
       {
-        type: "divider"
-      },
-      {
         type: "section",
         text: {
           text: "```#{ENV['BUDDY_EXECUTION_REVISION_MESSAGE']}```",
