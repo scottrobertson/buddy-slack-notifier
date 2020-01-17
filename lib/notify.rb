@@ -113,11 +113,20 @@ class Notify
           blocks: blocks,
         )
       else
-        @client.chat_update(
+        update = @client.chat_update(
           channel: ENV['CHANNEL'],
           ts: chat_id,
           blocks: blocks,
         )
+
+        # Update the original message thread with status history
+        @client.chat_postMessage(
+          channel: ENV['CHANNEL'],
+          thread_ts: chat_id,
+          text: "Status updated with: #{status}"
+        )
+
+        update
       end
     rescue => e
       puts e.response.body
