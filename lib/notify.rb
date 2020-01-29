@@ -65,13 +65,6 @@ class Notify
         },
       },
       {
-        type: "section",
-        text: {
-          text: "*Branch:* #{ENV['BUDDY_EXECUTION_BRANCH']}",
-          type: "mrkdwn"
-        },
-      },
-      {
         type: "context",
         elements: [
           {
@@ -85,6 +78,10 @@ class Notify
           {
             type: "mrkdwn",
             text: "*Time Taken:* #{ENV['BUDDY_EXECUTION_TIME']}s"
+          },
+          {
+            type: "mrkdwn",
+            text: "*Branch:* `#{ENV['BUDDY_EXECUTION_BRANCH']}`",
           },
         ]
       },
