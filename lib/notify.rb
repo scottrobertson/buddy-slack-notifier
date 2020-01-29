@@ -60,7 +60,14 @@ class Notify
       {
         type: "section",
         text: {
-          text: "```#{ENV['BUDDY_EXECUTION_REVISION_MESSAGE']}```",
+          text: "```#{ENV['BUDDY_EXECUTION_REVISION_MESSAGE'].truncate(2000)}```",
+          type: "mrkdwn"
+        },
+      },
+      {
+        type: "section",
+        text: {
+          text: "*Branch:* #{ENV['BUDDY_EXECUTION_BRANCH']}",
           type: "mrkdwn"
         },
       },
